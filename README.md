@@ -3,9 +3,9 @@
 # Stock Price Prediction Using Machine Learning
 
 ## Overview
-Can you predict the future? In this project, you'll explore using machine learning models in Python on Google Colab to forecast stock prices based on historical data.
+Can we predict the future? In this project, we'll explore using machine learning models in Python on Google Colab to forecast stock prices based on historical data.
 
-## What You Will Be Learning
+## Learning Goals
 - Understand the limitations and complexities of stock price prediction.
 - Implement machine learning models like LSTMs (Long Short-Term Memory) in Python for time series forecasting.
 - Evaluate the performance of your models and interpret the predictions with caution.
@@ -51,14 +51,14 @@ from google.colab import files
 uploaded = files.upload()
 
 # Load the CSV file
-df = pd.read_csv('google_stock_data.csv')
+df = pd.read_csv('GOOG.csv')
 
 # Display the first few rows of the dataset
 print(df.head())
 
 # Preprocess data
-# Assuming 'Close' is the target variable
-data = df['Close'].values
+# 'close' is the target variable
+data = df['close'].values
 data = data.reshape(-1, 1)
 
 # Normalize the data
@@ -110,9 +110,9 @@ test_predict = scaler.inverse_transform(test_predict)
 
 # Plot the results
 plt.figure(figsize=(10, 6))
-plt.plot(df['Date'], df['Close'], label='Actual Prices')
-plt.plot(df['Date'][time_step:len(train_predict) + time_step], train_predict, label='Train Predict')
-plt.plot(df['Date'][len(train_predict) + (time_step * 2) + 1:len(df) - 1], test_predict, label='Test Predict')
+plt.plot(df['date'], df['close'], label='Actual Prices')
+plt.plot(df['date'][time_step:len(train_predict) + time_step], train_predict, label='Train Predict')
+plt.plot(df['date'][len(train_predict) + (time_step * 2) + 1:len(df) - 1], test_predict, label='Test Predict')
 plt.xlabel('Date')
 plt.ylabel('Stock Price')
 plt.title('Stock Price Prediction')
